@@ -42,17 +42,23 @@ def get_source():
             
         elif to_come is not None:
             matches[-1][5] = "Not yet started"
-            matches[-1][1],matches[-1][3] = [temp2.string for temp2 in x.find_all(class_="cb-hmscg-bat-txt")]
-            matches[-1][2],matches[-1][4] = None, None
+            matches[-1][1:4:2] = [temp2.string for temp2 in x.find_all(class_="cb-hmscg-bat-txt")]
+            matches[-1][2],matches[-1][4] = "NA", "NA"
         else:
             matches[-1][5] = on_going.string
             temp = x.find(class_="cb-hmscg-bat-txt")
             matches[-1][1:3] = [temp2.string for temp2 in temp.find_all(class_="cb-ovr-flo")]
             temp = x.find(class_="cb-hmscg-bwl-txt")
             matches[-1][3:5] = [temp2.string for temp2 in temp.find_all(class_="cb-ovr-flo")]
+            
+            matches[-1][2] = "NA" if matches[-1][2] is None else matches[-1][2]
+            matches[-1][4] = "NA" if matches[-1][4] is None else matches[-1][4]
+    
+    return matches
     """
     for x in matches:    
         print x
     """
          
-get_source()
+if __name__ == "__main__":
+    print get_source()
