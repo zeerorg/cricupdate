@@ -20,6 +20,7 @@ class MainWindow(Gtk.Window):
             for n_x,x in enumerate(arr):
                 for y in range(6):
                     self.store[n_x][y] = x[y]
+	    self.show_all()
             #print arr
                 
     def list_store_data(self):
