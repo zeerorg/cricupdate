@@ -18,8 +18,9 @@ class MainWindow(Gtk.Window):
             time.sleep(5)
             arr = get.get_source()
             for n_x,x in enumerate(arr):
-                for y in range(6):
-                    self.store[n_x][y] = x[y]
+                if len(x) == 6:
+                    for y in range(6):
+                        self.store[n_x][y] = x[y]
 	    self.show_all()
             #print arr
                 
@@ -27,9 +28,10 @@ class MainWindow(Gtk.Window):
         self.store = Gtk.ListStore(str, str, str, str, str, str)
         storearr = []
         arr = get.get_source()
+        #print arr
         self.tree = Gtk.TreeView(self.store)
         for x in arr:
-            storearr.append(self.store.append(list(x)))
+            if len(x) == 6: self.store.append(list(x))
             
         
         top_title = ['Match', 'Team 1', 'Team 1 score', 'Team 2', 'Team 2 score', 'Result']
